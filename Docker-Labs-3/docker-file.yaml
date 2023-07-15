@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginxadvance:v1
+    container_name: nginxadvance_compose
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      Docker-World:
+        ipv4_address: 192.168.190.104
+    command: ["nginx", "-g", "daemon off"]
+    tty: true
+    stdin_open: true
+    
+networks:
+  Docker-World:
+    driver: ipvlan
+    driver_opts:
+      ipvlan_mode: l3
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.190.0/24

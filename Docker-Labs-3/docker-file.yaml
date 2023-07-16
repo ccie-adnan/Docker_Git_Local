@@ -16,10 +16,4 @@ services:
     
 networks:
   Docker-World:
-    driver: ipvlan
-    driver_opts:
-      ipvlan_mode: l3
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.190.0/24
+    external: true
